@@ -49,6 +49,24 @@ describe('everything', function () {
       expect(shoppingListItem.is_done).to.equal(false); 
     });
 
+    it('render should be a method', function(){
+      expect(shoppingListItem.render).to.be.a('function');
+     
+      
+    });
+   
+    
+    it('checks if render returns a string', function(){
+      shoppingListItem.render();
+      expect(shoppingListItem.render()).to.be.a('string');
+
   });
+  it('checks if render returns a <li>', function(){
+    shoppingListItem.render();
+    expect(shoppingListItem.render()).to.equal(`<li class="completed_${param3}"><span>${param1}</span> <span>${param2}</span></li>`)
+    console.log(shoppingListItem);
+
+});
+});
 
 });
