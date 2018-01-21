@@ -135,6 +135,38 @@ describe('ShoppingList', function () {
 
   });//closes describe addItem
 
+  describe('removeItem', function(){
+    it('should have a method named', function(){
+      expect(shoppingList.removeItem).to.be.a('function');
+
+    });
+
+    it('should remove item if it exist in items',function(){
+      shoppingList.addItem(shoppingListItem);
+      shoppingList.removeItem(shoppingListItem);
+      expect(shoppingList.items).to.deep.equal([]);
+    });
+
+    it('removes last shopping list item in cart if no parameter is given',function(){
+      shoppingList.addItem(shoppingListItem);
+      shoppingList.addItem(item2);
+      shoppingList.addItem(item3);
+      item3.render();
+      shoppingList.removeItem();
+      expect(shoppingList.items).to.deep.equal([shoppingListItem,item2]);
+      
+    })
+    it('should throw error',function(){
+      shoppingList.addItem(shoppingListItem);
+      expect(shoppingList.removeItem.bind(shoppingList,'z')).to.throw('err');
+    })
+    
+
+
+
+
+  })//closes removeItem
+
 
 
 
