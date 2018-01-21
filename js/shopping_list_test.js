@@ -136,7 +136,7 @@ describe('ShoppingList', function () {
   });//closes describe addItem
 
   describe('removeItem', function(){
-    it('should have a method named', function(){
+    it('should have a method named removeItem', function(){
       expect(shoppingList.removeItem).to.be.a('function');
 
     });
@@ -161,12 +161,29 @@ describe('ShoppingList', function () {
       expect(shoppingList.removeItem.bind(shoppingList,'z')).to.throw('err');
     })
     
-
-
-
-
   })//closes removeItem
 
+  describe('Render', function(){
+
+    it('should have a method named render ', function(){
+      expect(shoppingList.render).to.be.a('function');
+
+    })
+    it('checks if render returns a string', function () {
+      shoppingList.addItem(shoppingListItem);
+      shoppingList.addItem(item2);
+      shoppingList.addItem(item3);
+      
+      shoppingList.render();
+      expect(shoppingList.render()).to.be.a('string');
+
+    });
+    // shoppingList.addItem(shoppingListItem);
+    // shoppingList.addItem(item2);
+    // console.log(shoppingList.render());
+
+
+  });// Render
 
 
 

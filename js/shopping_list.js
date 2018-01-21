@@ -27,6 +27,15 @@ class ShoppingList {
     }
   }
 
+  render(){
+    let ul = `<ul>`;
+    let closeul = `</ul>`;
 
+    for(let i = 0; i < this.items.length; i++){
+      let render = this.items[i].render();
+      console.log(render);
+    }
+    return ul + render + closeul;
+  }
 
 }
