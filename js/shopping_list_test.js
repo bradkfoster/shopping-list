@@ -6,9 +6,14 @@ describe('everything', function () {
   let param1 = 'pizza';
   let param2 = 'cheesy';
   let param3 = null;
+  let item2;
+  let item3; 
 
   beforeEach(function () {
     shoppingListItem = new ShoppingListItem(param1, param2, param3);
+    item2 = new ShoppingListItem("apple", "red", param3);
+    item3 = new ShoppingListItem("pen", "pointy", param3);
+
   });
 
   describe('ShoppingListItem', function () {
@@ -48,11 +53,12 @@ describe('everything', function () {
       shoppingListItem.uncheck();
       expect(shoppingListItem.is_done).to.equal(false);
     });
-
- 
+    it('shoppingListItem should have a constructor', function () {
+      expect(shoppingListItem.constructor).to.be.a('function');
+    });
   });
 
-  describe('Uncheck',function(){
+  describe('Uncheck', function () {
     it('render should be a method', function () {
       expect(shoppingListItem.render).to.be.a('function');
 
@@ -68,29 +74,72 @@ describe('everything', function () {
     it('checks if render returns a <li> tag', function () {
       shoppingListItem.render();
       expect(shoppingListItem.render()).to.equal(`<li class="completed_${param3}"><span>${param1}</span> <span>${param2}</span></li>`)
-      console.log(shoppingListItem);
+     // console.log(shoppingListItem);
 
     });
   })
 
-});
 
-describe('ShoppingList',function(){
+
+
+
+describe('ShoppingList', function () {
   let shoppingList;
 
-    beforeEach(function(){
-      shoppingList = new ShoppingListItem();
+  beforeEach(function () {
+    shoppingList = new ShoppingList();
+  });
+
+  describe('creating Class and items', function () {
+
+    it('should be a class', function () {
+      expect(shoppingList).to.be.an.instanceof(ShoppingList);
     });
 
-    it('should be a class', function(){
-      ShoppingList.should.be.a('function');
+    it('should have property named items', function () {
+      //console.log(shoppingList);
+      expect(shoppingList).to.have.a.property('items');
     });
 
-    it('should have property named items', function(){
-      shoppingList.items.should.equal('items');
+    it('should be an empty array', function () {
+      expect(shoppingList.items).to.be.an('Array');
     });
+
+  });
+
+  describe('addItem', function () {
+
+
+    it('should have a method named addItem', function () {
+      expect(shoppingList.addItem).to.be.a('function');
+     
+    });
+
+    it('should add shoppingListItem', function(){
+      shoppingList.addItem(shoppingListItem);
+      shoppingList.items.should.contain(shoppingListItem);
+      
+    });
+    it('should be instance of ShoppingListItem', function(){
+      shoppingList.addItem(shoppingListItem);
+      expect(shoppingList.items[0]).to.be.an.instanceof(ShoppingListItem);
+      
+    });
+    it('throws error ', function(){
+      shoppingList.addItem(shoppingListItem);
+      expect(shoppingList.addItem.bind(shoppingList,'z')).to.throw('item');
+      
+    });
+
+
+
+  });//closes describe addItem
 
 
 
 
 });//closing shoppingList;
+
+
+
+});
